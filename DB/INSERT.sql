@@ -1,0 +1,1 @@
+INSERT INTO ROL(id_rol, nombre) VALUES (1, 'ADMINISTRADOR'), (2, 'AUDITOR'), (3, 'AUXILIAR');
