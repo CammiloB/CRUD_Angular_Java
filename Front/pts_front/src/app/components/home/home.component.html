@@ -1,0 +1,112 @@
+<div class="center-page">
+    <div class="card card-space">
+        <div class="card-header bg-dark text-white " >
+            Parametros de busqueda
+        </div>
+        <ul class="list-group list-group-flush row">
+            <tr>
+                <td scope="row">
+                    <button class="btn btn-primary" (click)="getUsers()">Consultar</button>
+                    <button class="btn btn-secondary" (click)="busqueda = ''">Limpiar</button>
+                </td>
+            </tr>
+        </ul>
+        <div class="card-body">
+            Nombre: <input type="text" [(ngModel)]="busqueda" placeholder="Buscar...">
+        </div>
+    </div>
+    <br>
+
+    <div class="card card-space">
+        <div class="card-header bg-dark text-white">
+            Lista de usuarios
+        </div>
+        <ul class="list-group list-group-flush row">
+            <tr>
+                <td scope="row">
+                    <button class="btn btn-primary" (click)="hiddenUserInfo(); isCreating=true">Crear</button>
+                </td>
+            </tr>
+        </ul>
+        <div class="card-body">
+            <table class="table table-dark">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>NOMBRE</th>
+                        <th>ROL</th>
+                        <th>ACTIVO</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of users | filter:busqueda" class="custom_cursor" (click)="selectUser(user); isCreating=false">
+                        <td>{{user.id_usuario}}</td>
+                        <td>{{user.nombre}}</td>
+                        <td>{{user.rol}}</td>
+                        <td>{{user.activo}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <br>
+
+    <div class="card card-space">
+        <div class="card-header bg-dark text-white">
+            Informacion del usuario
+        </div>
+        <ul class="list-group list-group-flush row">
+            <tr>
+                <td scope="row">
+                    <button class="btn btn-success" (click)="createUser()" [disabled]="!isCreating">Guardar</button>
+                    <button class="btn btn-secondary" (click)="updateUser()" [disabled]="isCreating">Editar</button>
+                    <button class="btn btn-danger" (click)="deleteUser()" [disabled]="isCreating">Eliminar</button>
+                </td>
+            </tr>
+        </ul>
+        <div class="card-body">
+            <div class="container">
+                <form [formGroup]="profileForm">
+                    <div class="input-group espacio">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">ID:</span>
+                        </div>
+                        <input type="text" formControlName="id_usuario" placeholder="Digite ID Usuario">
+
+                    </div>
+
+                    <div class="input-group espacio">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">Nombre:</span>
+                        </div>
+                        <input type="text" formControlName="nombre" placeholder="Digite Nombre">
+
+                    </div>
+                    <div class="input-group mb-3 espacio">
+                        <div class="input-group-prepend">
+                            <label class="input-group-text" for="inputGroupSelect01">Options</label>
+                        </div>
+                        <select class="custom-select" formControlName="id_rol">
+                            <option *ngFor="let rol of roles" [value]="rol.id_rol">{{rol.nombre}}</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group mb-3 espacio">
+                        <label >ACTIVO:</label>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" formControlName="activo" value="S">
+                            <label class="form-check-label" for="inlineRadio1">SI</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input type="radio" formControlName="activo" value="N">
+                            <label class="form-check-label" for="inlineRadio2">NO</label>
+                        </div>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+</div>

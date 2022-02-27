@@ -1,0 +1,28 @@
+.card-space{
+    width: 70%;
+}
+
+.center-page{
+    position:relative;
+    left:20%;
+}
+
+.espacio{
+    padding: 10px;
+}
+
+.custom_cursor{
+    cursor: pointer;
+}
+
+button{
+    margin: 5px;
+}
+
+tr{
+    padding: 10px;
+}
+
+td{
+    padding-left: 10px;
+}
